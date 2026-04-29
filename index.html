@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Vault — Carbon Clarity dMRV Platform</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        // Customizing the theme to match your "Vault" branding
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        vault: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            accent: '#10b981', // Carbon Green
+                            text: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <nav class="border-b border-slate-800 p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight text-vault-accent">CARBON CLARITY</h1>
+            <div class="space-x-6 text-sm font-medium">
+                <a href="#" class="hover:text-vault-accent">Dashboard</a>
+                <a href="#" class="hover:text-vault-accent">Projects</a>
+                <a href="#" class="bg-vault-accent text-slate-900 px-4 py-2 rounded-md">Connect Vault</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-8">
+        <header class="mb-12">
+            <h2 class="text-4xl font-bold mb-2">Data Vault</h2>
+            <p class="text-slate-400">Bridging rural Ghana with global carbon markets via dMRV technology.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-vault-card p-6 rounded-xl border border-slate-800">
+                <p class="text-slate-400 text-sm">Verified Credits</p>
+                <h3 class="text-3xl font-bold mt-2">12,450 <span class="text-sm font-normal text-vault-accent">tCO2e</span></h3>
+            </div>
+            <div class="bg-vault-card p-6 rounded-xl border border-slate-800">
+                <p class="text-slate-400 text-sm">Active Project Area</p>
+                <h3 class="text-3xl font-bold mt-2">4,200 <span class="text-sm font-normal text-vault-accent">Hectares</span></h3>
+            </div>
+            <div class="bg-vault-card p-6 rounded-xl border border-slate-800">
+                <p class="text-slate-400 text-sm">Farmer Nodes</p>
+                <h3 class="text-3xl font-bold mt-2">842</h3>
+            </div>
+        </div>
+
+        <div class="mt-12 p-8 border-2 border-dashed border-slate-700 rounded-2xl text-center">
+            <div id="root">
+                <p class="text-xl italic text-slate-500">Initializing Vault Secure Connection...</p>
+            </div>
+            <p class="mt-4 text-vault-accent">System Status: Testing Deployment</p>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const root = document.getElementById('root');
+            setTimeout(() => {
+                root.innerHTML = `
+                    <div class="animate-pulse">
+                        <p class="text-2xl font-semibold text-white">Hello Data! 🚀</p>
+                        <p class="text-sm text-slate-400 mt-2">The Data Vault testing environment is active.</p>
+                    </div>
+                `;
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
