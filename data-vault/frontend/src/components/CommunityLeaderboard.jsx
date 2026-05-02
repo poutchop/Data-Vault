@@ -37,7 +37,7 @@ const DEMO = [
   { id: '6', full_name: 'Yaa Frimpong',   site_name: 'Co-op W', cooperative: 'Nsawam Coop',  total_points: 98,  hardened_scans: 32, total_payouts_ghs: '8.17',  rank: 6 },
 ];
 
-export default function CommunityLeaderboard() {
+export default function CommunityLeaderboard({ isAdmin }) {
   const { data, loading } = useLeaderboard({ limit: 20 });
   const participants = data?.data?.length ? data.data : DEMO;
   const maxPoints    = participants[0]?.total_points || 1;
@@ -80,14 +80,24 @@ export default function CommunityLeaderboard() {
                 <div className="text-[10px] text-vault-muted">pts</div>
               </div>
 
-              <div className="text-right flex-shrink-0 hidden sm:block">
-                <div className="text-xs font-medium text-vault-purple">GHS {Number(p.total_payouts_ghs).toFixed(2)}</div>
-                <div className="text-[10px] text-vault-muted">earned</div>
+              <div className="text-right flex-shrink-0 hidden sm:block min-w-[70px]">
+                {isAdmin ? (
+                  <>
+                    <div className="text-xs font-medium text-vault-purple">GHS {Number(p.total_payouts_ghs).toFixed(2)}</div>
+                    <div className="text-[10px] text-vault-muted">earned</div>
+                  </>
+                ) : (
+                  <div className="flex flex-col items-end opacity-40">
+                    <div className="text-[10px] font-bold text-vault-muted blur-[2px]">GHS 88.88</div>
+                    <Lock size={8} className="mt-0.5" />
+                  </div>
+                )}
               </div>
             </div>
           ))}
         </div>
       </div>
+
 
       {/* Points key + next payout */}
       <div className="flex flex-col gap-4">

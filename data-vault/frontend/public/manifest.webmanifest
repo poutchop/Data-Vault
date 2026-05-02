@@ -1,0 +1,17 @@
+{
+  "name": "Carbon Clarity Data Vault",
+  "short_name": "Data Vault",
+  "description": "dMRV platform bridging rural Ghana with global carbon markets",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f1117",
+  "theme_color": "#10d97e",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

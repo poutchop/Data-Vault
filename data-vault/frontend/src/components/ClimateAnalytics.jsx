@@ -34,17 +34,17 @@ const tooltipStyle = {
 
 const axisStyle = { fill: '#8b8fa8', fontSize: 10 };
 
-export default function ClimateAnalytics() {
+export default function ClimateAnalytics({ isAdmin }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
       {/* CO2 avoided bar chart */}
-      <div className="card">
+      <div className={`card relative overflow-hidden ${!isAdmin ? 'min-h-[260px]' : ''}`}>
         <div className="card-header">
           <span className="w-2 h-2 rounded-sm bg-vault-green" />
           Firewood avoidance — CO₂ saved (kg/week)
         </div>
-        <div className="card-body pt-2">
+        <div className={`card-body pt-2 ${!isAdmin ? 'blur-md grayscale opacity-30 select-none pointer-events-none' : ''}`}>
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={co2Data} barGap={4}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
@@ -59,6 +59,13 @@ export default function ClimateAnalytics() {
             </BarChart>
           </ResponsiveContainer>
         </div>
+        {!isAdmin && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-vault-bg/20 z-10 p-6 text-center">
+            <Lock className="text-vault-amber mb-2" size={24} />
+            <div className="text-sm font-bold text-vault-text">CO₂ Analytics Restricted</div>
+            <div className="text-[11px] text-vault-muted mt-1">Administrator verification required</div>
+          </div>
+        )}
       </div>
 
       {/* Firewood bundles saved line chart */}
@@ -90,7 +97,7 @@ export default function ClimateAnalytics() {
           <div className="mt-3 grid grid-cols-3 gap-2">
             {[
               { label: 'Total bundles', value: '172' },
-              { label: 'Avg CO₂/bundle', value: '3.02 kg' },
+              { label: 'Avg CO₂/bundle', value: isAdmin ? '3.02 kg' : '••••' },
               { label: 'Week-on-week', value: '+16.7%' },
             ].map(({ label, value }) => (
               <div key={label} className="bg-vault-surface2 rounded-lg p-2.5 text-center">
@@ -124,10 +131,18 @@ export default function ClimateAnalytics() {
                   <td className="px-4 py-2.5 font-medium text-vault-text">{r.site}</td>
                   <td className="px-4 py-2.5 text-vault-muted">{r.p}</td>
                   <td className="px-4 py-2.5 text-vault-muted">{r.scans}</td>
-                  <td className="px-4 py-2.5 text-vault-green font-medium">{r.co2}</td>
+                  <td className="px-4 py-2.5 text-vault-green font-medium">
+                    {isAdmin ? r.co2 : <span className="blur-[3px] select-none">888 kg</span>}
+                  </td>
                   <td className="px-4 py-2.5 text-vault-blue">{r.nutr}</td>
                   <td className="px-4 py-2.5">
-                    <span className={`badge ${r.sc}`}>{r.status}</span>
+                    {isAdmin ? (
+                      <span className={`badge ${r.sc}`}>{r.status}</span>
+                    ) : (
+                      <span className="flex items-center gap-1 text-[10px] text-vault-muted">
+                        <Lock size={10} /> Locked
+                      </span>
+                    )}
                   </td>
                 </tr>
               ))}
