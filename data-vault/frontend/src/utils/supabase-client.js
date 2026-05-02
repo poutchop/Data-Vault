@@ -8,8 +8,8 @@ const safeStorage = {
 };
 
 export const supabase = createClient(
-  'YOUR_SUPABASE_URL', // <-- replace with your Supabase project URL
-  'YOUR_SUPABASE_ANON_KEY', // <-- replace with your anon public key
+  import.meta.env.VITE_SUPABASE_URL || 'YOUR_SUPABASE_URL',
+  import.meta.env.VITE_SUPABASE_ANON_KEY || 'YOUR_SUPABASE_ANON_KEY',
   {
     auth: {
       storage: safeStorage,

@@ -70,7 +70,7 @@ export default function App() {
 
           {/* Footer */}
           <footer className="px-6 py-4 border-t border-white/[0.06] text-[11px] text-vault-muted text-center">
-            Carbon Clarity Data Vault · dMRV Platform · Ashesi University Pilot · v2.0.2
+            Carbon Clarity Data Vault · dMRV Platform · Ashesi University Pilot · v3.0.0
           </footer>
         </div>
       </div>

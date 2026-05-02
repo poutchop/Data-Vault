@@ -17,7 +17,8 @@ function StatusIcon({ status }) {
 }
 
 function FeedRow({ scan }) {
-  const time = new Date(scan.created_at).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+  const dateObj = scan.created_at ? new Date(scan.created_at) : new Date();
+  const time = isNaN(dateObj.getTime()) ? '—:—' : dateObj.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
   const statusBadgeClass =
     scan.status === 'hardened' ? 'badge badge-green' :
     scan.status === 'flagged'  ? 'badge badge-amber' : 'badge badge-red';
