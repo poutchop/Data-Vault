@@ -35,7 +35,13 @@ const getStorage = (type) => {
   }
 };
 
-export const local = getStorage('localStorage');
-export const session = getStorage('sessionStorage');
+import SafeStore from './safeStore';
+
+export const local = {
+  setItem: (k, v) => SafeStore.set(k, v),
+  getItem: (k) => SafeStore.get(k),
+  removeItem: (k) => SafeStore.remove(k),
+};
+export const session = local; // share fallback
 
 export default { local, session };
